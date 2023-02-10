@@ -47,7 +47,10 @@ public class NBody {
 		return pArr;
 	}
 
-	public static void drawBackground(double radius, String img) {
+	/**
+	 *  private: just be used in this class
+	 */
+	private static void drawBackground(double radius, String img) {
 		/**
 		 *  Sets up the universe so it goes from 
 		 *  -radius, -radius up to radius, radius
@@ -57,7 +60,10 @@ public class NBody {
 		StdDraw.picture(0, 0, img);
 	}
 
-	public static void drawAllPlanets(Planet[] pArr) {
+	/**
+	 *  private: just be used in this class
+	 */
+	private static void drawAllPlanets(Planet[] pArr) {
 		for (Planet p : pArr) {
 			p.draw();
 		}

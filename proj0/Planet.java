@@ -2,7 +2,10 @@
  *  Decleration of the Planet class
  */
 public class Planet {
-	static final double G = 6.67e-11d; // the gravitational constant
+	/**
+	 *  private: just be used in this class
+	 */
+	private static final double G = 6.67e-11d; // the gravitational constant
 
 	public double xxPos; // Its current x postion
 	public double yyPos; // Its current y postion
@@ -144,7 +147,7 @@ public class Planet {
 	 *
 	 *  @return     the comparison result
 	 */
-	public Boolean equals(Planet p) {
+	private Boolean equals(Planet p) {
 		return this == p;
 	}
 
