@@ -74,4 +74,32 @@ public class Planet {
 		double r = this.calcDistance(p);
 		return (G * m1 * m2) / (r * r);
 	}
+
+	/**
+	 *  Calculates the force exerted in the X direction
+	 *
+	 *  @param   p  the given planet
+	 *
+	 *  @return     the force exerted in the X direction
+	 */
+	public double calcForceExertedByX(Planet p) {
+		double netForce = this.calcForceExertedBy(p);
+		double dx = p.xxPos - this.xxPos;
+		double r = this.calcDistance(p);
+		return netForce * dx / r;
+	}
+
+	/**
+	 *  Calculates the force exerted in the Y direction
+	 *
+	 *  @param   p  the given planet
+	 *
+	 *  @return     the force exerted in the Y direction
+	 */
+	public double calcForceExertedByY(Planet p) {
+		double netForce = this.calcForceExertedBy(p);
+		double dy = p.yyPos - this.yyPos;
+		double r = this.calcDistance(p);
+		return netForce * dy / r;
+	}
 }
