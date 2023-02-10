@@ -55,6 +55,12 @@ public class NBody {
 		StdDraw.picture(0, 0, img);
 	}
 
+	public static void drawAllPlanets(Planet[] pArr) {
+		for (Planet p : pArr) {
+			p.draw();
+		}
+	}
+
 	public static void main(String[] args) {
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);
@@ -66,6 +72,6 @@ public class NBody {
 		String background = "./images/starfield.jpg";
 		drawBackground(radius, background);
 
-
+		drawAllPlanets(pArr);
 	}
 }
