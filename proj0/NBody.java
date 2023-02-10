@@ -48,8 +48,10 @@ public class NBody {
 	}
 
 	public static void drawBackground(double radius, String img) {
-		/** Sets up the universe so it goes from 
-		  * -radius, -radius up to radius, radius */
+		/**
+		 *  Sets up the universe so it goes from 
+		 *  -radius, -radius up to radius, radius
+		 */
 		StdDraw.setScale(-radius, radius);
 
 		StdDraw.picture(0, 0, img);
@@ -62,16 +64,66 @@ public class NBody {
 	}
 
 	public static void main(String[] args) {
+		/* Store the 0th and 1st command line arguments as doubles named T and dt */
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);
+
+		/* Store the 2nd command line argument as a String named filename */
 		String filename = args[2];
 
+		/**
+		 *  Read in the planets and the universe radius from the file 
+		 *  described by filename using your methods from earlier in this assignment
+		 */
 		double radius = readRadius(filename);
 		Planet[] pArr = readPlanets(filename);
 
+		/* Store the number of planets */
+		int n = pArr.length;
+
+		/* Draw the initial universe state */
 		String background = "./images/starfield.jpg";
 		drawBackground(radius, background);
-
 		drawAllPlanets(pArr);
+
+		/* Enable double buffering */
+		StdDraw.enableDoubleBuffering();
+
+		/**
+		 *  Create a time variable and set it to 0.
+		 *  Set up a loop to loop until this time variable is T.
+		 *  Increase your time variable by dt.
+		 */
+		for (double time = 0; time < T; time += dt) {
+			/* Create an xForces array and yForces array. */
+			double[] xForces = new double[n];
+			double[] yForces = new double[n];
+
+			/**
+			 *  Calculate the net x and y forces for each planet,
+			 *  storing these in the xForces and yForces arrays respectively.
+			 */
+			for (int i = 0; i < n; i++) {
+				xForces[i] = pArr[i].calcNetForceExertedByX(pArr);
+				yForces[i] = pArr[i].calcNetForceExertedByY(pArr);
+				/**
+				 *  Call update on each of the planets.
+				 *  This will update each planet’s position, velocity, and acceleration.
+				 */
+				pArr[i].update(dt, xForces[i], yForces[i]);
+			}
+
+			/* Draw the background image. */
+			drawBackground(radius, background);
+
+			/* Draw all of the planets. */
+			drawAllPlanets(pArr);
+
+			/* Show the offscreen buffer. */
+			StdDraw.show();
+
+			/* Pause the animation for 10 milliseconds */
+			StdDraw.pause(10);
+		}
 	}
 }
