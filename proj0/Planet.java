@@ -2,6 +2,7 @@
  *  Decleration of the Planet class
  */
 public class Planet {
+	static final double G = 6.67e-11d; // the gravitational constant
 
 	public double xxPos; // Its current x postion
 	public double yyPos; // Its current y postion
@@ -48,9 +49,29 @@ public class Planet {
 		this.imgFileName = p.imgFileName;
 	}
 
+	/**
+	 *  Calculates the distance between two Planets
+	 *
+	 *  @param   p  the other planet
+	 *
+	 *  @return     the distance between p and this
+	 */
 	public double calcDistance(Planet p) {
 		double xxDiff = this.xxPos - p.xxPos;
 		double yyDiff = this.yyPos - p.yyPos;
 		return Math.sqrt(xxDiff * xxDiff + yyDiff * yyDiff);
+	}
+
+	/**
+	 *  Calculates the force exerted on this planet by the given planet
+	 *
+	 *  @param   p  the given planet
+	 *
+	 *  @return     the force exerted on this planet
+	 */
+	public double calcForceExertedBy(Planet p) {
+		double m1 = this.mass, m2 = p.mass;
+		double r = this.calcDistance(p);
+		return (G * m1 * m2) / (r * r);
 	}
 }
