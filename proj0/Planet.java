@@ -2,7 +2,7 @@
  *  Decleration of the Planet class
  */
 public class Planet {
-	
+
 	public double xxPos; // Its current x postion
 	public double yyPos; // Its current y postion
 	public double xxVel; // Its current velocity in the x direction
@@ -46,5 +46,11 @@ public class Planet {
 		this.yyVel = p.yyVel;
 		this.mass = p.mass;
 		this.imgFileName = p.imgFileName;
+	}
+
+	public double calcDistance(Planet p) {
+		double xxDiff = this.xxPos - p.xxPos;
+		double yyDiff = this.yyPos - p.yyPos;
+		return Math.sqrt(xxDiff * xxDiff + yyDiff * yyDiff);
 	}
 }
