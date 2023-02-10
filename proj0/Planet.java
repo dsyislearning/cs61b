@@ -147,4 +147,27 @@ public class Planet {
 	public Boolean equals(Planet p) {
 		return this == p;
 	}
+
+	/**
+	 *  1. Calculate the acceleration using the provided x- and y-forces.
+	 *  2. Calculate the new velocity by using the acceleration and current velocity. 
+	 *     Recall that acceleration describes the change in velocity per unit time,
+	 *     so the new velocity is (vx + dt * ax, vy + dt * ay).
+	 *  3. Calculate the new position by using the velocity computed in step 2
+	 *     and the current position. The new position is (px + dt * vx, py + dt * vy).
+	 *  
+	 *  Uses the steps above to update the planet’s position and velocity instance variables
+	 *
+	 *  @param  dt  a small period of time
+	 *  @param  fX  x-force
+	 *  @param  fY  y-force
+	 */
+	public void update(double dt, double fX, double fY) {
+		double aX = fX / this.mass;
+		double aY = fY / this.mass;
+		this.xxVel += dt * aX;
+		this.yyVel += dt * aY;
+		this.xxPos += dt * this.xxVel;
+		this.yyPos += dt * this.yyVel;
+	}
 }
