@@ -80,7 +80,6 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
-
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
         if (A != null || B != null) {
@@ -96,6 +95,15 @@ public class IntList {
             return A;
         }
         return null;
+    }
+    // Destructive. Use recursion
+    public static IntList dcatenateRecursive(IntList A, IntList B) {
+        if (A.rest == null) {
+            A.rest = B;
+            return A;
+        }
+        A.rest = dcatenateRecursive(A.rest, B);
+        return A;
     }
 
     /**
@@ -122,6 +130,13 @@ public class IntList {
             return res.rest;
         }
         return null;
+    }
+    // Non-destructive. Use recursion
+    public static IntList catenateRecursive(IntList A, IntList B) {
+        if (A == null) {
+            return B; // Just don't modify A, B won't be considered
+        }
+        return new IntList(A.first, catenateRecursive(A.rest, B));
     }
 
 
