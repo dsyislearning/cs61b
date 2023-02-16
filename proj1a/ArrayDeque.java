@@ -14,21 +14,21 @@ public class ArrayDeque<T> {
         nextLast = 0;
     }
 
-    /**
-     * Creates a deep copy of other.
-     * @param other
-     */
-    public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object[8];
-        size = 0;
-        nextFirst = items.length - 1;
-        nextLast = 0;
-
-        /* other is an instantiation, we can only manipulate it my its public methods */
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    /**
+//     * Creates a deep copy of other.
+//     * @param other
+//     */
+//    public ArrayDeque(ArrayDeque other) {
+//        items = (T[]) new Object[8];
+//        size = 0;
+//        nextFirst = items.length - 1;
+//        nextLast = 0;
+//
+//        /* other is an instantiation, we can only manipulate it my its public methods */
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
