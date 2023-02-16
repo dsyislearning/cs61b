@@ -28,11 +28,11 @@ public class LinkedListDeque<T> {
         sentinel = new TNode(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
-        size = other.size();
-        TNode p = other.sentinel.next;
-        while (p != other.sentinel) {
-            this.addLast((T) p.item);
-            p = p.next;
+        size = 0;
+
+        /* other is an instantiation, we can only manipulate it my its public methods */
+        for (int i = 0; i < other.size(); i++) {
+            addLast((T) other.get(i));
         }
     }
 

@@ -19,18 +19,22 @@ public class ArrayDeque<T> {
      * @param other
      */
     public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object[other.items.length];
-        System.arraycopy((T[]) other.items, 0, items, 0, other.size());
-        nextFirst = other.getNextFirst();
-        nextLast = other.getNextLast();
-        size = other.size();
+        items = (T[]) new Object[8];
+        size = 0;
+        nextFirst = items.length - 1;
+        nextLast = 0;
+
+        /* other is an instantiation, we can only manipulate it my its public methods */
+        for (int i = 0; i < other.size(); i++) {
+            addLast((T) other.get(i));
+        }
     }
 
-    public int getNextFirst() {
+    private int getNextFirst() {
         return nextFirst;
     }
 
-    public int getNextLast() {
+    private int getNextLast() {
         return nextLast;
     }
 
