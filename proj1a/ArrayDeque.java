@@ -30,18 +30,10 @@ public class ArrayDeque<T> {
         }
     }
 
-    private int getNextFirst() {
-        return nextFirst;
-    }
-
-    private int getNextLast() {
-        return nextLast;
-    }
-
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int firstPos = (nextFirst + 1) % items.length;
-        int lastPos = (nextLast - 1) % items.length;
+        int lastPos = (items.length + nextLast - 1) % items.length;
         if (firstPos <= lastPos) {
             System.arraycopy(items, firstPos, a, 0, lastPos - firstPos + 1);
         } else {
@@ -62,7 +54,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         items[nextFirst] = item;
-        nextFirst = (nextFirst - 1) % items.length;
+        nextFirst = (items.length + nextFirst - 1) % items.length;
         size++;
     }
 
@@ -104,7 +96,7 @@ public class ArrayDeque<T> {
      */
     public void printDeque() {
         int firstPos = (nextFirst + 1) % items.length;
-        int lastPos = (nextLast - 1) % items.length;
+        int lastPos = (items.length + nextLast - 1) % items.length;
         if (firstPos <= lastPos) {
             for (int i = firstPos; i <= lastPos; i++) {
                 System.out.print(items[i]);
@@ -148,7 +140,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        int lastPos = (nextLast - 1) % items.length;
+        int lastPos = (items.length + nextLast - 1) % items.length;
         T res = items[lastPos];
         items[lastPos] = null;
         nextLast = lastPos;
