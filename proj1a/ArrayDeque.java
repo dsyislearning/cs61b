@@ -163,6 +163,6 @@ public class ArrayDeque<T> {
             return null;
         }
         int firstPos = (nextFirst + 1) % items.length;
-        return items[firstPos + index];
+        return items[(firstPos + index) % items.length];
     }
 }
