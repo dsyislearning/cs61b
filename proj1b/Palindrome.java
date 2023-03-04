@@ -29,4 +29,18 @@ public class Palindrome {
             return false;
         }
     }
+
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        Deque<Character> wordDeque = wordToDeque(word);
+        if (wordDeque.isEmpty() || wordDeque.size() == 1) {
+            return true;
+        }
+        Character first = wordDeque.removeFirst(),
+                last = wordDeque.removeLast();
+        if (cc.equalChars(first.charValue(), last.charValue())) {
+            return isPalindrome(dequeToWord(wordDeque), cc);
+        } else {
+            return false;
+        }
+    }
 }
