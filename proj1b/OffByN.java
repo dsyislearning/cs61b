@@ -10,8 +10,7 @@ public class OffByN implements CharacterComparator {
         int diff = x - y;
         if (diff == n || diff == -n) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
