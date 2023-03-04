@@ -36,4 +36,16 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("aba", cc));
         assertFalse(palindrome.isPalindrome("!@#$%^&   ", cc));
     }
+
+    static CharacterComparator ccN = new OffByN(5);
+
+    @Test
+    public void testIsPalindromeOffByN() {
+        assertTrue(palindrome.isPalindrome("", ccN));
+        assertTrue(palindrome.isPalindrome("a", ccN));
+        assertTrue(palindrome.isPalindrome("af", ccN));
+        assertTrue(palindrome.isPalindrome("abf", ccN));
+        assertFalse(palindrome.isPalindrome("12344", ccN));
+        assertFalse(palindrome.isPalindrome("%%$$$", ccN));
+    }
 }
