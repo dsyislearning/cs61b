@@ -5,7 +5,7 @@ public class TestArrayDequeGold {
     public void testStudentArrayDeque() {
         StudentArrayDeque<Integer> student = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solution = new ArrayDequeSolution<>();
-        String message = "Method calls:\n";
+        String message = "";
         for (int i = 0; i < 100; i++) {
             double ran = StdRandom.uniform();
             Integer in = Integer.valueOf(i);
