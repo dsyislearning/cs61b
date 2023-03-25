@@ -22,7 +22,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         @Override
         public T next() {
             T res = rb[index];
-            index++;
+            index = (index + 1) % rb.length; // ring buffer!!!
             return res;
         }
     }
@@ -56,6 +56,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     @Override
     public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Ring Buffer Underflow");
+        }
         return rb[first];
     }
 
