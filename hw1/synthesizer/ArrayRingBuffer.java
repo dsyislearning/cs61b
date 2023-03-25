@@ -9,20 +9,23 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     private class ArrayRingBufferIterator implements Iterator<T> {
         private int index;
+        private int cnt;
 
         public ArrayRingBufferIterator() {
             index = first; // !!! not from 0
+            cnt = 0;
         }
 
         @Override
         public boolean hasNext() {
-            return index < last; // !!! not rb.length
+            return cnt < fillCount;
         }
 
         @Override
         public T next() {
             T res = rb[index];
             index = (index + 1) % rb.length; // ring buffer!!!
+            cnt++;
             return res;
         }
     }
