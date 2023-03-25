@@ -11,7 +11,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         private int index;
 
         public ArrayRingBufferIterator() {
-            index = 0;
+            index = first; // !!! not from 0
         }
 
         @Override
