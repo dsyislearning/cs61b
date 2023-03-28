@@ -30,7 +30,7 @@ public class HexWorld {
 
 //        addHexagon(world, new Position(0, 0), 4, Tileset.WALL);
 
-        tesselationOfHexagons(world, new Position(0, 0), 5);
+        tesselationOfHexagons(world, new Position(3, 10), 3);
 
         ter.renderFrame(world);
     }
@@ -63,7 +63,7 @@ public class HexWorld {
 
     private static Position blockPosition(Position p, int col, int s, int i) {
         int x = p.getX() + col * (s * 2 - 1);
-        int y = ColumnStartY(col, s) + i * 2 * s;
+        int y = p.getY() + ColumnStartY(col, s) + i * 2 * s;
         return new Position(x, y);
     }
 
