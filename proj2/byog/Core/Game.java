@@ -52,9 +52,7 @@ public class Game {
     }
 
     private TETile[][] generateRandomWorld(World world, String seed) {
-//        Random r = new Random(Integer.parseInt(seed));
-
-        Random r = new Random();
+        Random r = new Random(Integer.parseInt(seed));
 
         world.generateRandomRooms(r);
 
