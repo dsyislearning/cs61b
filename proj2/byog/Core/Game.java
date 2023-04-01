@@ -49,13 +49,21 @@ public class Game {
 
     private String getSeed(String input) {
         int startIndex = 0;
-        int endIndex = 0;
+        int endIndex = input.length() - 1;
         char[] chars = input.toCharArray();
 
-        if (chars[0] == 'N' || chars[0] == 'n') {
+        char first = chars[0];
+        if (first == 'N' || first == 'n') {
             startIndex = 1;
             for (int i = 0; i < chars.length; i++) {
                 if (chars[i] == 'S' || chars[i] == 's') {
+                    endIndex = i;
+                    break;
+                }
+            }
+        } else if (first >= '0' && first <= '9') {
+            for (int i = 0; i < chars.length; i++) {
+                if (!(chars[i] >= '0' && chars[i] <= '9')) {
                     endIndex = i;
                     break;
                 }
