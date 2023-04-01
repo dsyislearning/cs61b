@@ -35,14 +35,14 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        ter.initialize(WIDTH, HEIGHT);
+//        ter.initialize(WIDTH, HEIGHT);
 
         String seed = getSeed(input);
 
         World world = new World(WIDTH, HEIGHT);
         TETile[][] finalWorldFrame = generateRandomWorld(world, seed);
 
-        ter.renderFrame(finalWorldFrame);
+//        ter.renderFrame(finalWorldFrame);
 
         return finalWorldFrame;
     }
