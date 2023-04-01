@@ -37,7 +37,7 @@ public class Game {
 
 //        ter.initialize(WIDTH, HEIGHT);
 
-        String seed = getSeed(input);
+        long seed = getSeed(input);
 
         World world = new World(WIDTH, HEIGHT);
         TETile[][] finalWorldFrame = generateRandomWorld(world, seed);
@@ -47,34 +47,14 @@ public class Game {
         return finalWorldFrame;
     }
 
-    private String getSeed(String input) {
-        int startIndex = 0;
-        int endIndex = input.length() - 1;
-        char[] chars = input.toCharArray();
-
-        char first = chars[0];
-        if (first == 'N' || first == 'n') {
-            startIndex = 1;
-            for (int i = 0; i < chars.length; i++) {
-                if (chars[i] == 'S' || chars[i] == 's') {
-                    endIndex = i;
-                    break;
-                }
-            }
-        } else if (first >= '0' && first <= '9') {
-            for (int i = 0; i < chars.length; i++) {
-                if (!(chars[i] >= '0' && chars[i] <= '9')) {
-                    endIndex = i;
-                    break;
-                }
-            }
-        }
-
-        return input.substring(startIndex, endIndex);
+    private long getSeed(String input) {
+        int indexS = input.toLowerCase().indexOf('s');
+        long seed = Long.parseLong(input.substring(1, indexS));
+        return seed;
     }
 
-    private TETile[][] generateRandomWorld(World world, String seed) {
-        Random r = new Random(Integer.parseInt(seed));
+    private TETile[][] generateRandomWorld(World world, long seed) {
+        Random r = new Random(seed);
 
         world.generateRandomRooms(r);
 
