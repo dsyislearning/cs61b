@@ -48,7 +48,21 @@ public class Game {
     }
 
     private String getSeed(String input) {
-        return input.substring(1, input.length() - 1);
+        int startIndex = 0;
+        int endIndex = 0;
+        char[] chars = input.toCharArray();
+
+        if (chars[0] == 'N' || chars[0] == 'n') {
+            startIndex = 1;
+            for (int i = 0; i < chars.length; i++) {
+                if (chars[i] == 'S' || chars[i] == 's') {
+                    endIndex = i;
+                    break;
+                }
+            }
+        }
+
+        return input.substring(startIndex, endIndex);
     }
 
     private TETile[][] generateRandomWorld(World world, String seed) {
