@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import lab9.BSTMap;
 
+import java.util.HashSet;
+
 /**
  * Tests by Brendan Hu, Spring 2015, revised for 2018 by Josh Hug
  */
@@ -84,6 +86,43 @@ public class TestBSTMap {
         b.put("hi", 1);
         assertTrue(b.containsKey("hi"));
         assertTrue(b.get("hi") != null);
+    }
+
+    @Test
+    public void sanityKeySetTest() {
+        BSTMap<String, Integer> b = new BSTMap<>();
+        b.put("hi", 1);
+        b.put("hello", 2);
+        HashSet<String> set = new HashSet<>();
+        set.add("hi");
+        set.add("hello");
+        assertEquals(b.keySet(), set);
+        b.remove("hi");
+        set.remove("hi");
+        assertEquals(1, b.size());
+        assertEquals(b.keySet(), set);
+    }
+
+    @Test
+    public void saniryRemoveTest() {
+        BSTMap<String, Integer> b = new BSTMap<>();
+        b.put("a", 1);
+        b.put("b", 2);
+        b.put("c", 3);
+        b.put("d", 4);
+        b.put("e", 5);
+        b.put("f", 6);
+        assertEquals(6, b.size());
+        b.put("a", 7);
+        assertEquals(6, b.size());
+        assertTrue(b.containsKey("a"));
+        assertEquals(Integer.valueOf(7), b.remove("a"));
+        assertEquals(5, b.size());
+        assertFalse(b.containsKey("a"));
+        assertEquals(Integer.valueOf(2), b.remove("b", 2));
+        assertEquals(4, b.size());
+        assertNull(b.remove("c", 1));
+        assertEquals(4, b.size());
     }
 
     public static void main(String[] args) {
